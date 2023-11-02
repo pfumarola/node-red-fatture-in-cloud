@@ -11,7 +11,7 @@ module.exports = function (RED) {
 
       try {
         node.status({ fill: "blue", shape: "dot", text: "Requesting" });
-        msg.payload = await listProducts(token);
+        msg.payload = await listProducts(token, msg.opts);
         node.status({});
       } catch (error) {
         node.status({ fill: "red", shape: "ring", text: "Error" });
@@ -22,7 +22,7 @@ module.exports = function (RED) {
   }
   RED.nodes.registerType("products", ProductsNode);
 
-  async function listProducts(accessToken) {
+  async function listProducts(accessToken, opts) {
     let defaultClient = fattureInCloudSdk.ApiClient.instance;
     let OAuth2AuthenticationCodeFlow =
       defaultClient.authentications["OAuth2AuthenticationCodeFlow"];
@@ -33,12 +33,13 @@ module.exports = function (RED) {
     let userCompaniesResponse = await userApiInstance.listUserCompanies();
     let firstCompanyId = userCompaniesResponse.data.companies[0].id;
 
-    // Retrieve the list of the suppliers
+    // Retrieve the list of the products
     let productsApiInstance = new fattureInCloudSdk.ProductsApi();
     let companyProducts = await productsApiInstance.listProducts(
-      firstCompanyId
+      firstCompanyId,
+      opts || {}
     );
 
-    return companyProducts.data;
+    return companyProducts;
   }
 };
