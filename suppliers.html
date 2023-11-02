@@ -3,6 +3,7 @@
 		category: 'Fatture In Cloud',
 		color: '#0d97d5',
 		defaults: {
+			name: { value: "str" },
 			accessToken: { value: "str" }
 		},
 		inputs: 1,
@@ -13,7 +14,7 @@
 		},
 		oneditprepare: function () {
 			$("#accessToken").typedInput({
-				typeField: "#accessTokenType"
+				typeField: "#node-input-accessTokenType"
 			});
 		}
 	});
@@ -21,13 +22,13 @@
 
 <script type="text/html" data-template-name="suppliers">
 	<div class="form-row">
-		<label for="name"><i class="fa fa-tag"></i>Name</label>
-		<input type="text" id="name">
+		<label for="node-input-name"><i class="fa fa-tag"></i>Name</label>
+		<input type="text" id="node-input-name">
   </div>
   <div class="form-row">
-		<label for="accessToken"><i class="fa fa-tag"></i>Access Token</label>
-		<input type="text" id="accessToken">
-		<input type="hidden" id="accessTokenType">
+		<label for="node-input-accessToken"><i class="fa fa-tag"></i>Access Token</label>
+		<input type="text" id="node-input-accessToken">
+		<input type="hidden" id="node-input-accessTokenType">
   </div>
 
 </script>
