@@ -29,10 +29,11 @@ module.exports = function(RED) {
 		 let firstCompanyId = userCompaniesResponse.data.companies[0].id;
 
 		 // Retrieve the list of the suppliers
-		 let suppliersApiInstance = new fattureInCloudSdk.suppliersApi();
-		 let companysuppliers = await suppliersApiInstance.listsuppliers(firstCompanyId);
-		 
-		 return JSON.stringify(companysuppliers.data)
+		let suppliersApiInstance = new fattureInCloudSdk.SuppliersApi();
+    let companySuppliers = await suppliersApiInstance.listSuppliers(firstCompanyId);
+ 
+    return(JSON.stringify(companySuppliers.data)); 
+
 	}
 }
 
