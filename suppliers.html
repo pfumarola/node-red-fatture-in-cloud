@@ -3,7 +3,7 @@
 		category: 'Fatture In Cloud',
 		color: '#0d97d5',
 		defaults: {
-			name: { value: "str" },
+			name: { value: "" },
 			accessToken: { value: "str" }
 		},
 		inputs: 1,
@@ -13,7 +13,7 @@
 			return this.name || "suppliers";
 		},
 		oneditprepare: function () {
-			$("#accessToken").typedInput({
+			$("#node-input-accessToken").typedInput({
 				typeField: "#node-input-accessTokenType"
 			});
 		}
