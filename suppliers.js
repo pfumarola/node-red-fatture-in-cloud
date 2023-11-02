@@ -1,3 +1,5 @@
+const fattureInCloudSdk = require("@fattureincloud/fattureincloud-js-sdk");
+
 module.exports = function(RED) {
 	function GeneralNode(config) {
 		RED.nodes.createNode(this,config);
@@ -17,6 +19,7 @@ module.exports = function(RED) {
 	RED.nodes.registerType("suppliers",GeneralNode);
 	
 	async function listsupplierss(accessToken) {
+		let defaultClient = fattureInCloudSdk.ApiClient.instance;
 		let OAuth2AuthenticationCodeFlow = defaultClient.authentications['OAuth2AuthenticationCodeFlow'];
     OAuth2AuthenticationCodeFlow.accessToken = accessToken;
 
