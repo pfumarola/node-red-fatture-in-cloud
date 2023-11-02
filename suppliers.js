@@ -3,7 +3,14 @@ module.exports = function(RED) {
 		RED.nodes.createNode(this,config);
 		var node = this;
 		node.on('input', async function(msg) {
-			msg.payload = await listsupplierss(msg.token);
+			node.status({fill:"blue",shape:"dot",text:"Requesting"});
+			try {
+				msg.payload = await listsupplierss(msg.token);
+				node.status({})
+			} catch (error) {
+				node.status({fill:"red",shape:"ring",text:"Error"});
+				msg.payload = error
+			}
 			node.send(msg);
 		});
 	}
@@ -19,10 +26,10 @@ module.exports = function(RED) {
 		 let firstCompanyId = userCompaniesResponse.data.companies[0].id;
 
 		 // Retrieve the list of the supplierss
-		 let supplierssApiInstance = new fattureInCloudSdk.supplierssApi();
-		 let companysupplierss = await supplierssApiInstance.listsupplierss(firstCompanyId);
+		 let suppliersApiInstance = new fattureInCloudSdk.supplierssApi();
+		 let companysuppliers = await suppliersApiInstance.listsupplierss(firstCompanyId);
 		 
-		 return JSON.stringify(companysupplierss.data)
+		 return JSON.stringify(companysuppliers.data)
 	}
 }
 
