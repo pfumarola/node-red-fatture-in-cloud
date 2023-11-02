@@ -10,7 +10,8 @@
   "keywords": ["node-red"],
   "node-red": {
     "nodes": {
-      "suppliers": "suppliers.js"
+      "suppliers": "suppliers/suppliers.js",
+      "customers": "customers/customers.js"
     }
   }
 }

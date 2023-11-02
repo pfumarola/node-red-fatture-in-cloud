@@ -4,8 +4,8 @@
 		color: '#0d97d5',
 		defaults: {
 			name: { value: "" },
-			accessToken: { value: "" },
-			enabled: { value: "true"}
+			accessTokenSource: { value: "accessToken" },
+			accessTokenSourceType: { value: "msg" }
 		},
 		inputs: 1,
 		outputs: 1,
@@ -14,8 +14,10 @@
 			return this.name || "suppliers";
 		},
 		oneditprepare: function () {
-			$("#node-input-accessToken").typedInput({
-				typeField: "#node-input-accessTokenType"
+			$("#node-input-accessTokenSource").typedInput({
+				typeField: "#node-input-accessTokenSourceType",
+				type:"msg",
+    		types:["msg", "flow", "global", "env"]
 			});
 		}
 	});
@@ -27,10 +29,9 @@
 		<input type="text" id="node-input-name">
   </div>
   <div class="form-row">
-		<button type="button" class="red-ui-toggleButton" id="node-input-enabled">Button</button>
-		<label for="node-input-accessToken"><i class="fa fa-tag"></i>Access Token</label>
-		<input type="text" id="node-input-accessToken">
-		<input type="hidden" id="node-input-accessTokenType">
+		<label for="node-input-accessTokenSource"><i class="fa fa-tag"></i>Access Token</label>
+		<input type="text" id="node-input-accessTokenSource">
+		<input type="hidden" id="node-input-accessTokenSourceType">
   </div>
 
 </script>
