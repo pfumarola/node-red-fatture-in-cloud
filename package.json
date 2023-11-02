@@ -1,0 +1,16 @@
+{
+  "name": "node-red-fatture-in-cloud",
+  "version": "1.0.0",
+  "description": "Ottimizza la gestione aziendale, consentendo di automatizzare le operazioni direttamente dal tuo flusso Node-RED. Semplifica i processi aziendali, risparmia tempo e riduci gli sforzi manuali, consentendo al tuo team di concentrarsi su attività più significative.",
+  "author": "Paolo Fumarola",
+  "license": "ISC",
+  "dependencies": {
+    "@fattureincloud/fattureincloud-js-sdk": "^2.0.23"
+  },
+  "keywords": ["node-red"],
+  "node-red": {
+    "nodes": {
+      "suppliers": "suppliers.js"
+    }
+  }
+}
