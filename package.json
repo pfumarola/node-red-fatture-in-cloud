@@ -11,7 +11,8 @@
   "node-red": {
     "nodes": {
       "suppliers": "suppliers/suppliers.js",
-      "customers": "customers/customers.js"
+      "customers": "customers/customers.js",
+      "products": "products/products.js"
     }
   }
 }
