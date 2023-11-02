@@ -10,6 +10,7 @@ module.exports = function(RED) {
 				msg.payload = await listSuppliers(msg.token);
 				msg.name = node.name;
 				msg.nodeAccessToken = node.accessToken;
+				msg.enabled = node.enabled;
 				node.status({})
 			} catch (error) {
 				node.status({fill:"red",shape:"ring",text:"Error"});

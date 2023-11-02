@@ -4,7 +4,8 @@
 		color: '#0d97d5',
 		defaults: {
 			name: { value: "" },
-			accessToken: { value: "str" }
+			accessToken: { value: "" },
+			enabled: { value: "true"}
 		},
 		inputs: 1,
 		outputs: 1,
@@ -26,6 +27,7 @@
 		<input type="text" id="node-input-name">
   </div>
   <div class="form-row">
+		<button type="button" class="red-ui-toggleButton" id="node-input-enabled">Button</button>
 		<label for="node-input-accessToken"><i class="fa fa-tag"></i>Access Token</label>
 		<input type="text" id="node-input-accessToken">
 		<input type="hidden" id="node-input-accessTokenType">
