@@ -12,7 +12,8 @@
     "nodes": {
       "suppliers": "suppliers/suppliers.js",
       "customers": "customers/customers.js",
-      "products": "products/products.js"
+      "products": "products/products.js",
+      "vat-type": "vat-types/vat-types.js"
     }
   }
 }

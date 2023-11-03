@@ -2,7 +2,7 @@ const fattureInCloudSdk = require("@fattureincloud/fattureincloud-js-sdk");
 const common = require("../common");
 
 module.exports = function (RED) {
-  function SuppliersNode(config) {
+  function VatTypeNode(config) {
     RED.nodes.createNode(this, config);
     var node = this;
     node.on("input", async function (msg) {
@@ -11,7 +11,7 @@ module.exports = function (RED) {
 
       try {
         node.status({ fill: "blue", shape: "dot", text: "Requesting" });
-        msg.payload = await listSuppliers(token, msg.opts);
+        msg.payload = await listVatType(token, msg.opts);
         node.status({});
       } catch (error) {
         common.handleErrors(node, error, msg);
@@ -20,9 +20,9 @@ module.exports = function (RED) {
       node.send(msg);
     });
   }
-  RED.nodes.registerType("suppliers", SuppliersNode);
+  RED.nodes.registerType("vatTypes", VatTypeNode);
 
-  async function listSuppliers(accessToken, opts) {
+  async function listVatType(accessToken, opts) {
     let defaultClient = fattureInCloudSdk.ApiClient.instance;
     let OAuth2AuthenticationCodeFlow =
       defaultClient.authentications["OAuth2AuthenticationCodeFlow"];
@@ -33,13 +33,13 @@ module.exports = function (RED) {
     let userCompaniesResponse = await userApiInstance.listUserCompanies();
     let firstCompanyId = userCompaniesResponse.data.companies[0].id;
 
-    // Retrieve the list of the suppliers
-    let suppliersApiInstance = new fattureInCloudSdk.SuppliersApi();
-    let companySuppliers = await suppliersApiInstance.listSuppliers(
+    // Retrieve the list of the vatTypes
+    let infoApiInstance = new fattureInCloudSdk.InfoApi();
+    let companyVatTypes = await infoApiInstance.listVatTypes(
       firstCompanyId,
       opts || {}
     );
 
-    return companySuppliers;
+    return companyVatTypes;
   }
 };

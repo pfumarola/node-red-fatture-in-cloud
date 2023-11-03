@@ -1,0 +1,41 @@
+<script type="text/javascript">
+	RED.nodes.registerType('vatTypes', {
+		category: 'Fatture In Cloud',
+		color: '#0d97d5',
+		defaults: {
+			name: { value: "" },
+			accessTokenSource: { value: "accessToken" },
+			accessTokenSourceType: { value: "msg" }
+		},
+		inputs: 1,
+		outputs: 1,
+		icon: "font-awesome/fa-percent",
+		label: function () {
+			return this.name || "vatTypes";
+		},
+		oneditprepare: function () {
+			$("#node-input-accessTokenSource").typedInput({
+				typeField: "#node-input-accessTokenSourceType",
+				type:"msg",
+    		types:["msg", "flow", "global", "env"]
+			});
+		}
+	});
+</script>
+
+<script type="text/html" data-template-name="vatTypes">
+	<div class="form-row">
+		<label for="node-input-name"><i class="fa fa-tag"></i>Name</label>
+		<input type="text" id="node-input-name">
+  </div>
+  <div class="form-row">
+		<label for="node-input-accessTokenSource"><i class="fa fa-tag"></i>Access Token</label>
+		<input type="text" id="node-input-accessTokenSource">
+		<input type="hidden" id="node-input-accessTokenSourceType">
+  </div>
+
+</script>
+
+<script type="text/html" data-help-name="vatTypes">
+	<p>A node that let's you make request to your Fatture in Cloud instance</p>
+</script>

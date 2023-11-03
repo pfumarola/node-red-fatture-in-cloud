@@ -7,15 +7,15 @@ module.exports = function (RED) {
     var node = this;
     node.on("input", async function (msg) {
       
-      let token = common.getAccessToken(node, config);
+      let token = common.getAccessToken(node, config, msg);
 
       try {
         node.status({ fill: "blue", shape: "dot", text: "Requesting" });
         msg.payload = await listCustomers(token, msg.opts);
         node.status({});
       } catch (error) {
-        node.status({ fill: "red", shape: "ring", text: "Error" });
-        msg.payload = error;
+        common.handleErrors(node, error, msg);
+        return;
       }
       node.send(msg);
     });
